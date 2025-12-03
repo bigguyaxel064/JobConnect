@@ -1,0 +1,53 @@
+.admin-section {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: #fff;
+
+  .crud-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .crud-form input,
+  .crud-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 8px;
+  }
+
+  .entity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .simple-list .list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+  }
+  .list-row .muted {
+    color: #666;
+    font-size: 0.9em;
+  }
+  .row-actions button {
+    margin-left: 6px;
+  }
+  .checkbox-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

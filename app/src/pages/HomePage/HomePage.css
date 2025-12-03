@@ -1,0 +1,11 @@
+.homepage-main-container {
+  text-align: center;
+}
+
+.job-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+}

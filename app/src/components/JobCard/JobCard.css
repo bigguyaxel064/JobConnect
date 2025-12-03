@@ -1,0 +1,100 @@
+.job-card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin: 18px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px 0 rgba(37, 99, 235, 0.1), 0 1.5px 4px 0 rgba(0, 0, 0, 0.08);
+  width: 320px;
+  min-height: 220px;
+  padding: 24px 22px 18px 22px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  border: 1.5px solid #e2e8f0;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.018);
+    box-shadow: 0 10px 28px 0 rgba(37, 99, 235, 0.13), 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+    border-color: #2563eb33;
+  }
+
+  h2 {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--primary-color, #2563eb);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 0 #e0e7ff;
+    text-align: left;
+  }
+
+  .job-company-name {
+    font-size: 1.01rem;
+    color: var(--secondary-color, #64748b);
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+    margin-top: 0.1rem;
+    letter-spacing: 0.01em;
+    text-align: left;
+  }
+
+  .job-location {
+    font-size: 0.97rem;
+    color: #2563eb;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    margin-top: 0.1rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-align: left;
+
+    .job-location-icon {
+      margin-right: 4px;
+      font-size: 1.08em;
+    }
+  }
+
+  p {
+    font-size: 1.04rem;
+    color: var(--text-secondary, #64748b);
+    margin-bottom: 1.1rem;
+    min-height: unset;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  a {
+    margin-top: 0;
+    padding: 10px 22px;
+    background: linear-gradient(90deg, #2563eb 60%, #1d4ed8 100%);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.1);
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    outline: none;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+      background: linear-gradient(90deg, #1d4ed8 60%, #2563eb 100%);
+      box-shadow: 0 4px 16px 0 rgba(37, 99, 235, 0.18);
+      transform: scale(1.04);
+    }
+  }
+}

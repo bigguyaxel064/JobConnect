@@ -1,0 +1,464 @@
+.offer-detail {
+  margin: 0 auto;
+  padding: 1rem;
+
+  article {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+
+    .back-button {
+      background-color: transparent;
+      border: none;
+      color: #007bff;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      padding: 5px 10px;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #0056b3;
+      }
+    }
+
+    .offer-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 1rem;
+
+      h1 {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #666;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+
+      h2 {
+        color: #333;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #555;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .offer-info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+
+        .info-item {
+          background-color: #f8f9fa;
+          padding: 0.75rem;
+          border-radius: 5px;
+          font-size: 0.9rem;
+
+          strong {
+            color: #333;
+            display: block;
+            margin-bottom: 0.25rem;
+          }
+        }
+      }
+
+      .company-info {
+        p {
+          margin-bottom: 0.75rem;
+          line-height: 1.6;
+          font-size: 0.95rem;
+        }
+
+        a {
+          color: #007bff;
+          text-decoration: none;
+          word-break: break-word;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .offer-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+
+      .apply-button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+
+        &:hover {
+          background-color: #1d4ed8;
+        }
+      }
+    }
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+
+    .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.25rem;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 1rem;
+
+        h2 {
+          color: #333;
+          font-size: 1.25rem;
+          margin: 0;
+          padding-right: 0.5rem;
+        }
+
+        .close-button {
+          background: none;
+          border: none;
+          font-size: 1.75rem;
+          color: #999;
+          cursor: pointer;
+          line-height: 1;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          flex-shrink: 0;
+
+          &:hover {
+            color: #333;
+          }
+        }
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+
+            .required-indicator {
+              color: #dc2626;
+              font-weight: bold;
+            }
+          }
+
+          input[type='text'],
+          textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 150px;
+          }
+
+          .readonly-input {
+            background-color: #f8f9fa !important;
+            color: #6c757d;
+            cursor: not-allowed;
+          }
+
+          input[type='file'] {
+            padding: 0.5rem;
+            font-size: 0.95rem;
+          }
+
+          .cv-info {
+            background-color: #d1fae5;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+
+            .cv-status {
+              color: #065f46;
+              font-weight: 500;
+              margin: 0 0 0.25rem 0;
+              font-size: 0.9rem;
+            }
+
+            .cv-optional {
+              color: #047857;
+              font-size: 0.85rem;
+              margin: 0;
+            }
+          }
+
+          .cv-required {
+            background-color: #fef2f2;
+            color: #991b1b;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+          }
+
+          .file-selected {
+            color: #065f46;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+          }
+        }
+
+        .form-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          margin-top: 0.5rem;
+
+          button {
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+          }
+
+          .cancel-button {
+            background-color: #6c757d;
+            color: white;
+
+            &:hover {
+              background-color: #5a6268;
+            }
+          }
+
+          .submit-button {
+            background-color: #2563eb;
+            color: white;
+
+            &:hover:not(:disabled) {
+              background-color: #1d4ed8;
+            }
+
+            &:disabled {
+              background-color: #93c5fd;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+
+    article {
+      padding: 2rem;
+      border-radius: 10px;
+
+      .back-button {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .offer-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.25rem;
+
+        h1 {
+          font-size: 1.75rem;
+          margin-bottom: 0.75rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      section {
+        margin-bottom: 2rem;
+
+        h2 {
+          font-size: 1.35rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        .offer-info-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+
+          .info-item {
+            padding: 1rem;
+            font-size: 0.95rem;
+          }
+        }
+
+        .company-info p {
+          margin-bottom: 0.85rem;
+        }
+      }
+
+      .offer-actions .apply-button {
+        padding: 0.875rem 2rem;
+        font-size: 1.05rem;
+        width: auto;
+      }
+    }
+
+    .modal-overlay .modal-content {
+      padding: 1.75rem;
+
+      .modal-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.25rem;
+
+        h2 {
+          font-size: 1.4rem;
+        }
+      }
+
+      form {
+        .form-group label {
+          font-size: 1rem;
+        }
+
+        .form-actions {
+          flex-direction: row;
+          justify-content: flex-end;
+          gap: 0.75rem;
+
+          button {
+            width: auto;
+            padding: 0.75rem 1.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    max-width: 900px;
+    padding: 2rem;
+
+    article {
+      padding: 2.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      .offer-header {
+        margin-bottom: 2.5rem;
+
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 0.875rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
+
+      section {
+        margin-bottom: 2.5rem;
+
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .offer-info-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.25rem;
+
+          .info-item {
+            padding: 1rem;
+          }
+        }
+
+        .company-info p {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .offer-actions .apply-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    .modal-overlay .modal-content {
+      padding: 2rem;
+
+      .modal-header {
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .close-button {
+          font-size: 2rem;
+        }
+      }
+
+      form .form-actions {
+        gap: 1rem;
+      }
+    }
+  }
+}
