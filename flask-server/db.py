@@ -4,10 +4,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Expose routes as a Blueprint so server.py can register them on the main app
+
 bp = Blueprint('db', __name__)
 
-# Configuration de la base de données
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'db'),
     'user': os.getenv('DB_USER', 'root'),

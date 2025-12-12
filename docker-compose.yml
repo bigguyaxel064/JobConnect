@@ -1,12 +1,7 @@
 services:
   backend:
-  #Will find the DockerFile inside flask-server/
     build: ./flask-server
-    # Usually we don't put a name on a container_name, so it choose it alone.
     container_name: react_flask_backend
-    #This is use to synchronize our folder flask-server and /app
-    #This is usefull too because when we change our code is instant visible.
-    #Format port_hote:port_container
     volumes:
       - ./flask-server:/app
     ports:
@@ -19,7 +14,6 @@ services:
       - DB_PASSWORD=${DB_PASSWORD:-mypassword}
     env_file:
       - .env
-      #It launch after the bdd.
     depends_on:
       - db
     healthcheck:
@@ -33,7 +27,6 @@ services:
     container_name: react_flask_frontend
     volumes:
       - ./app:/usr/src/app
-      # Protect the node_modules. 
       - /usr/src/app/node_modules
     ports:
       - "${FRONTEND_HOST_PORT:-5173}:5173"
@@ -43,7 +36,6 @@ services:
       - backend
 
   db:
-  #No need dockerfile, it download the official image.
     image: mysql:8.0
     container_name: react_flask_db
     restart: unless-stopped
@@ -54,10 +46,8 @@ services:
       MYSQL_DATABASE: "${DB_NAME:-react_flask_db}"
       MYSQL_USER: "${DB_USER:-root}"
       MYSQL_PASSWORD: "${DB_PASSWORD:-mypassword}"
-   #Where mysql get his data.
     volumes:
       - db-data:/var/lib/mysql
-      # Initialize DB schema on first run
       - ./flask-server/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -p${DB_PASSWORD:-mypassword} || exit 1"]

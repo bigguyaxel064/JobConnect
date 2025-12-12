@@ -12,7 +12,7 @@ from models.stats import bp as stats_bp
 
 app = Flask(__name__)
 import os
-# CORS config: allow frontend origin and credentials (needed for session cookie)
+
 FRONTEND_ORIGIN = os.getenv('FRONTEND_ORIGIN', 'http://localhost:5173')
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": FRONTEND_ORIGIN}})
 import os
@@ -21,7 +21,7 @@ import os
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-key')
 import os
 
-# Enregistrement des blueprints
+
 app.register_blueprint(db_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(company_bp)

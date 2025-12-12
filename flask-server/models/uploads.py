@@ -27,7 +27,6 @@ def upload_file():
     if filename == '':
         return jsonify({"error": "validation_error", "message": "empty filename"}), 400
 
-    # Allow PDF and Word documents
     allowed_types = ['application/pdf', 'application/msword', 
                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
     
@@ -37,7 +36,7 @@ def upload_file():
             "message": "only PDF and Word files are allowed"
         }), 400
 
-    # Size check (5MB)
+  
     f.seek(0, os.SEEK_END)
     size = f.tell()
     f.seek(0)
@@ -46,11 +45,11 @@ def upload_file():
     if size > MAX:
         return jsonify({"error": "validation_error", "message": "file exceeds 5MB"}), 400
 
-    # Generate unique filename
+    
     ext = os.path.splitext(filename)[1]
     unique_filename = f'cv_{session.get("user_id")}_{uuid.uuid4().hex}{ext}'
     
-    # Save file
+
     uploads_dir = os.path.join(current_app.root_path, 'uploads')
     os.makedirs(uploads_dir, exist_ok=True)
     dest = os.path.join(uploads_dir, unique_filename)
@@ -63,7 +62,7 @@ def upload_file():
 @bp.route('/users/<int:user_id>/cv', methods=['PUT'])
 def upload_user_cv(user_id):
     """Upload CV specifically for user profile"""
-    # Authorization: user must be owner or admin
+    
     if not session.get('user_id'):
         return jsonify({"error": "unauthorized", "message": "not logged in"}), 403
     if session.get('user_id') != user_id and not session.get('is_admin'):
@@ -73,17 +72,17 @@ def upload_user_cv(user_id):
         return jsonify({"error": "validation_error", "message": "file is required"}), 400
 
     f = request.files['file']
-    # Basic validation: filename and content type
+
     filename = f.filename or ''
     if filename == '':
         return jsonify({"error": "validation_error", "message": "empty filename"}), 400
 
-    # Allow only PDFs by default
+    
     allowed = ['application/pdf']
     if f.mimetype not in allowed:
         return jsonify({"error": "validation_error", "message": "only PDF files are allowed"}), 400
 
-    # Size check (5MB)
+
     f.seek(0, os.SEEK_END)
     size = f.tell()
     f.seek(0)
@@ -91,14 +90,14 @@ def upload_user_cv(user_id):
     if size > MAX:
         return jsonify({"error": "validation_error", "message": "file exceeds 5MB"}), 400
 
-    # Save file
+   
     uploads_dir = os.path.join(current_app.root_path, 'uploads')
     os.makedirs(uploads_dir, exist_ok=True)
     safe_name = f'user_{user_id}_cv.pdf'
     dest = os.path.join(uploads_dir, safe_name)
     f.save(dest)
 
-    # Update DB
+    
     conn = None
     try:
         conn = get_db_connection()

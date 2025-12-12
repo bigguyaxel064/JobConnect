@@ -22,7 +22,7 @@ def login():
     """Simple login endpoint.
     Accepts either form-urlencoded (email/identifiant, password) or JSON.
     """
-    # Get credentials from form or JSON
+  
     email = request.form.get('email') or request.form.get('identifiant')
     password = request.form.get('password')
     if request.is_json:
@@ -33,7 +33,7 @@ def login():
     if not email or not password:
         return jsonify({"error": "validation_error", "message": "email and password are required"}), 400
 
-    # Try to find user
+
     conn = None
     try:
         conn = get_db_connection()
@@ -47,7 +47,7 @@ def login():
         if not user or user.get('password_hash') != password:
             return jsonify({"error": "unauthorized", "message": "invalid credentials"}), 401
 
-        # Store minimal session info
+        
         session['user_id'] = user['id']
         session['user_email'] = user['email']
         session['is_admin'] = bool(user.get('is_admin', False))
@@ -77,10 +77,10 @@ def login():
 @bp.route('/logout', methods=['POST', 'GET'])
 def logout():
     """Log out the current user by clearing session and deleting the session cookie."""
-    # Clear all session data
+
     session.clear()
 
-    # Build empty response and delete the session cookie explicitly
+   
     resp = make_response('', 204)
     cookie_name = current_app.config.get('SESSION_COOKIE_NAME', 'session')
     cookie_path = current_app.config.get('SESSION_COOKIE_PATH', '/')
@@ -96,7 +96,7 @@ def session_info():
     if not user_id:
         return jsonify({'user': None}), 200
     
-    # Fetch fresh user data from database
+  
     conn = None
     try:
         conn = get_db_connection()
@@ -108,7 +108,7 @@ def session_info():
             user = cursor.fetchone()
         
         if not user:
-            # User doesn't exist anymore, clear session
+           
             session.clear()
             return jsonify({'user': None}), 200
         

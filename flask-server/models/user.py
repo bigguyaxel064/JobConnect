@@ -11,7 +11,7 @@ def get_users():
         with conn.cursor() as cursor:
             cursor.execute("SELECT * FROM user_account;")
             users = cursor.fetchall()
-        # Remove sensitive fields
+        
         for u in users:
             u.pop("password_hash", None)
         return jsonify({"users": users}), 200

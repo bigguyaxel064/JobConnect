@@ -62,7 +62,7 @@ def add_advertisement():
             }), 400
 
 
-        # Only admins may create advertisements
+      
         if not session.get('user_id') or not session.get('is_admin'):
             return jsonify({"error": "forbidden", "message": "admin_required"}), 403
 
@@ -84,7 +84,6 @@ def add_advertisement():
                     data["description"],
                     data["publish_date"],
                     data["company_id"],
-                    # Optional fields: empty string -> NULL
                     _n(data.get("employment_type")),
                     _n(data.get("work_mode")),
                     _n(data.get("salary_min")),
@@ -95,7 +94,6 @@ def add_advertisement():
             conn.commit()
 
             new_id = cursor.lastrowid
-            # Fetch and return the created row
             cursor.execute("SELECT * FROM advertisement WHERE id = %s", (new_id,))
             created = cursor.fetchone()
 
@@ -131,13 +129,13 @@ def update_advertisement(advertisement_id):
                 "message": f"Missing required field(s): {', '.join(missing)}"
             }), 400
         
-        # Only admins may update advertisements
+   
         if not session.get('user_id') or not session.get('is_admin'):
             return jsonify({"error": "forbidden", "message": "admin_required"}), 403
 
         conn = get_db_connection()
         with conn.cursor() as cursor:
-            # Normalize optional fields: empty strings -> NULL
+            
             def _n(v):
                 return v if (v is not None and str(v).strip() != "") else None
 
@@ -176,7 +174,7 @@ def update_advertisement(advertisement_id):
             if affected == 0:
                 return jsonify({"error": "not_found", "message": "advertisement not found"}), 404
 
-            # Optionally return the updated row
+       
             cursor.execute("SELECT * FROM advertisement WHERE id = %s", (advertisement_id,))
             updated = cursor.fetchone()
 
@@ -192,7 +190,7 @@ def update_advertisement(advertisement_id):
 def delete_advertisement(advertisement_id): 
     conn = None
     try:
-        # Only admins may delete advertisements
+       
         if not session.get('user_id') or not session.get('is_admin'):
             return jsonify({"error": "forbidden", "message": "admin_required"}), 403
 
